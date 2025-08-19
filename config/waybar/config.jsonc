@@ -1,0 +1,230 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 0,
+  "modules-left": [
+    "custom/launcher",
+    "niri/workspaces",
+    "power-profiles-daemon",
+    "custom/lock",
+    "custom/reboot",
+    "custom/power",
+    //    "wlr/taskbar",
+    "mpris"
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "tray",
+    "network",
+    "custom/pacman",
+    "custom/gsconnect",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    //    "custom/temperature",
+    //    "cpu",
+    //    "memory",
+    "niri/language",
+    "battery",
+    "custom/dnd"
+  ],
+
+    "custom/dnd": {
+        "interval": "once",
+        "return-type": "json",
+        "format": "{}{icon}",
+        "format-icons": {
+            "default": " 󰚢 ",
+            "dnd": " 󰚣 "
+        },
+        "on-click": "$HOME/.config/scripts/dnd.sh toggle; waybar-signal dnd",
+        "on-click-right": "$HOME/.config/scripts/dnd.sh restore",
+        "exec": "$HOME/.config/scripts/dnd.sh status",
+        "signal": 11
+    },
+  
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+
+    "custom/launcher": {
+    "interval": "once",
+    "format": "  ",
+    "on-click": "pkill fuzzel || fuzzel -l 3",
+    "tooltip": false
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 20,
+    "icon-theme": "Papirus-Dark",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": ["Alacritty"],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Foot Server": "Terminal"
+    }
+  },
+
+  "mpris": {
+    "format": "{player_icon}{artist} - {title}",
+    "format-paused": "{status_icon}<i>{artist} - {title}</i>",
+    "max-length": 40,
+    "player-icons": {
+      "default": "<span color='#8EE697'> ▶ </span>",
+      "mpv": " 🎵 "
+    },
+    "status-icons": {
+      "paused": "<span color='#F2A1A5'> ⏸ </span>"
+    }
+  },
+
+  "custom/pacman": {
+    "format": "<span color='#F2A1A5'>  </span>{}",
+    "interval": 30,
+    "exec": "checkupdates | wc -l",
+    "exec-if": "exit 0",
+    "on-click": "alacritty -e sh -c 'paru -Syu; echo Готово — нажмите Enter, чтобы выйти; read'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8,
+    "tooltip": false
+  },
+
+  "niri/language": {
+    "format": "<span color='#B1CAE1'>  </span> {}",
+    "format-en": "EN",
+    "format-ru": "RU"
+  },
+
+  "power-profiles-daemon": {
+    "format": " {icon}",
+    "tooltip-format": "Профиль: {profile}\nДрайвер: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "  ",
+      "performance": "<span color='#F2A1A5'>  </span>",
+      "balanced": "<span color='#8EE697'>  </span>",
+      "power-saver": "<span color='#D099D6'>  </span>"
+    }
+  },
+
+  "custom/lock": {
+    "format": "<span color='#A4CAEE'>  </span>",
+    "on-click": "hyprlock",
+    "tooltip": true,
+    "tooltip-format": "Заблокировать"
+  },
+  "custom/reboot": {
+    "format": "<span color='#8EE697'>  </span>",
+    "on-click": "systemctl reboot",
+    "tooltip": true,
+    "tooltip-format": "Перезагрузить"
+  },
+  "custom/power": {
+    "format": "<span color='#F2A1A5'>  </span> ",
+    "on-click": "systemctl poweroff",
+    "tooltip": true,
+    "tooltip-format": "Выключить"
+  },
+  "network": {
+    "format-wifi": "<span color='#9EDAE6'> 󰤨 </span>{essid}",
+    "format-ethernet": "<span color='#8EE697'>  </span>Wired",
+    "on-click-middle": "alacritty -e nmtui",
+    "tooltip-format": "<span color='#EEA4C8'> 󰅧 </span>{bandwidthUpBytes}<span color='#A4CAEE'> 󰅢 </span>{bandwidthDownBytes}",
+    "format-linked": "<span color='#FFC994'> 󱘖 </span>{ifname}(No IP)",
+    "format-disconnected": "<span color='#F2A1A5'>  </span>",
+    "format-alt": "<span color='#A4CAEE'> 󰤨 </span>{signalStrength}%",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color='#8EE697'> {icon} </span>{capacity}%",
+    "format-charging": " 󱐋 {capacity}% ",
+    "interval": 1,
+    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
+    "tooltip": true
+  },
+  "pulseaudio": {
+    "format": "<span color='#8EE697'>{icon}</span>{volume}%",
+    "format-muted": "<span color='#F2A1A5'> 󰖁 </span>0%",
+    "format-icons": {
+      "headphone": "<span color='#D099D6'>  </span>",
+      "hands-free": "<span color='#D099D6'>  </span>",
+      "headset": "<span color='#D099D6'>  </span>",
+      "phone": "<span color='#9EDAE6'>  </span>",
+      "portable": "<span color='#9EDAE6'>  </span>",
+      "car": "<span color='#F2A1A5'>  </span>",
+      "default": [
+        "<span color='#B1CAE1'>  </span>",
+        "<span color='#F3D796'>  </span>",
+        "<span color='#8EE697'>  </span>"
+      ]
+    },
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl -- set-sink-mute 0 toggle",
+    "tooltip": true,
+    "tooltip-format": "Громкость: {volume}%"
+  },
+  "custom/temperature": {
+    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+    "format": "<span color='#F2A1A5'>  </span>{}°C",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "CPU: {}°C"
+  },
+  "memory": {
+    "format": "<span color='#D099D6'>  </span>{used:0.1f}G/{total:0.1f}G",
+    "tooltip": true,
+    "tooltip-format": "Использовано: {used:0.2f}G/{total:0.2f}G"
+  },
+  "cpu": {
+    "format": "<span color='#8EE697'>  </span>{usage}%",
+    "tooltip": true
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "Asia/Yekaterinburg",
+    "format": "<span color='#DCBA8C'> 󰥔 </span>{:%H:%M} ",
+    "tooltip": true,
+    "tooltip-format": "{:L%Y/%m/%d, %A}"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 6,
+    "icon-theme": "Papirus-Dark"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "<span color='#DCBA8C'>{icon}</span>{percent}%",
+    "tooltip": true,
+    "tooltip-format": "Монитор: {percent}%",
+    "format-icons": [
+      "<span color='#B1CAE1'> 󰃞 </span>",
+      "<span color='#F3D796'> 󰃝 </span>",
+      "<span color='#FFC994'> 󰃟 </span>",
+      "<span color='#DCBA8C'> 󰃠 </span>"
+    ]
+  },
+  "bluetooth": {
+    "format": "<span color='#A4CAEE'>  </span>{status}",
+    "format-connected": "<span color='##A4CAEE'>  </span>{device_alias}",
+    "format-connected-battery": "<span color='#A4CAEE'>  </span>{device_alias}{device_battery_percentage}% ",
+    "on-click-middle": "blueman-manager",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} подключено",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} подключено\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  }
+}

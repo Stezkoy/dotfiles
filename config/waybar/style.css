@@ -1,0 +1,141 @@
+
+* {
+  font-family: "Google Sans Mono";
+  font-weight: bold;
+  font-size: 18px;
+  color: #e8e8e8;  
+}
+
+#waybar {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: none;
+}
+
+#custom-launcher,
+#taskbar,
+#workspaces,
+#clock,
+#mpris,
+#tray{
+  background-color: rgba(29, 29, 32, 0.9); 
+  padding: 4px 6px;
+  margin-top: 6px; 
+  margin-left: 6px; 
+  margin-right: 6px; 
+  border-radius: 10px;
+  border-width: 0px;
+  border: 2px solid #505050;
+}
+
+
+#custom-dnd,
+#custom-power {
+  background-color: rgba(29, 29, 32, 0.9);
+  margin-top: 6px; 
+  margin-right: 6px;
+  padding: 4px 2px;
+  border-radius: 0 10px 10px 0;
+  border-width: 0px;
+  border-top: 2px solid #505050;
+  border-bottom: 2px solid #505050;
+  border-right: 2px solid #505050;
+}
+
+#network,
+#power-profiles-daemon {
+  background-color: rgba(29, 29, 32, 0.9);
+  margin-top: 6px; 
+  margin-left: 6px;
+  padding: 4px 2px; 
+  border-radius: 10px 0 0 10px;
+  border-width: 0px;
+  border-top: 2px solid #505050;
+  border-bottom: 2px solid #505050;
+  border-left: 2px solid #505050;
+}
+
+
+#battery,
+#custom-lock,
+#custom-pacman,
+#custom-reboot,
+#bluetooth,
+#language,
+#pulseaudio,
+#backlight,
+#custom-temperature,
+#memory,
+#cpu {
+  background-color: rgba(29, 29, 32, 0.9);
+  margin-top: 6px; 
+  padding: 4px 2px;
+  border-width: 0px;
+  border-top: 2px solid #505050;
+  border-bottom: 2px solid #505050;
+}
+
+#custpm-temperature.critical,
+#pulseaudio.muted {
+  color: #E84053;
+}
+#custom-dnd:hover,
+#custom-launcher:hover,
+#taskbar button:hover,
+#custom-pacman:hover,
+#power-profiles-daemon:hover,
+#bluetooth:hover,
+#network:hover,
+#language:hover,
+#backlight:hover,
+#battery:hover,
+#pulseaudio:hover,
+#custom-temperature:hover,
+#memory:hover,
+#cpu:hover,
+#custom-notify:hover,
+#clock:hover,
+#mpris:hover,
+#custom-lock:hover,
+#custom-reboot:hover,
+#custom-power:hover,
+#window:hover {
+  background-color: rgba(97, 97, 97, 0.9); 
+}
+
+
+#workspaces button:hover{
+  background-color: rgba(97, 97, 97, 0.9); 
+  padding: 2px 8px 2px 4px;
+  margin: 0 2px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  background-color: rgba(97, 97, 97, 0.9); 
+  padding: 2px 8px 2px 4px;
+  margin: 0px 2px;
+  border-radius: 10px;
+}
+
+#workspaces button {
+  background: transparent;
+  border: none;
+  color: #505050;
+  padding: 2px 8px 2px 4px;
+  margin: 0 2px;
+  font-weight: bold;
+}
+
+#window {
+  font-weight: 500;
+  font-style: normal;
+}
+
+tooltip {
+     border-radius: 10px;
+     border: 2px solid #505050;
+     color: #e8e8e8;
+     background-color: rgba(29, 29, 32, 0.9);
+
+}
