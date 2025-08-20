@@ -160,7 +160,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        active-gradient from="#8d8d8dff" to="#2e2e2eff" angle=45
+        active-gradient from="#8d8d8dff" to="#2e2e2eff" angle=135
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -327,7 +327,7 @@ window-rule {
     match app-id=r#"^org\.telegram\.desktop$"#
     match app-id="yandex-browser"
     match app-id="code"
-
+    match app-id="steam"
     open-maximized true
 }
 
@@ -341,11 +341,14 @@ window-rule {
     match app-id="qt6ct"
     match app-id="qt5ct"
     match app-id="app.drey.Dialect"
-//    match app-id="Alacritty"
+    match app-id="gsconnect-preferences"
     open-floating true
 }
 
-
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
 
 binds {
     Mod+Shift+Slash hotkey-overlay-title="Показать горячии клавиши"{ show-hotkey-overlay; }
@@ -368,7 +371,7 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-" "-e" "-s"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "5%+" "-e" "-s"; }
-    Mod+Ctrl+XF86TouchpadToggle allow-when-locked=true { spawn "sh" "-c" "$HOME/.config/scripts/newtouch.sh $HOME/.config/niri/config.kdl"; }
+    Mod+Ctrl+XF86TouchpadToggle allow-when-locked=true hotkey-overlay-title=null { spawn "sh" "-c" "$HOME/.config/scripts/newtouch.sh $HOME/.config/niri/config.kdl"; }
 
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
@@ -377,7 +380,7 @@ binds {
     Mod+O repeat=false hotkey-overlay-title="Обзор" { toggle-overview; }
     Alt+Tab repeat=false { toggle-overview; }
     Mod+Q { close-window; }
-    Mod+Escape { spawn "wlogout" "-b" "4";}
+    Mod+Escape hotkey-overlay-title="Сеанс" { spawn "wlogout" "-b" "4";}
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -433,8 +436,8 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
+    Mod+Page_Down     hotkey-overlay-title=null { focus-workspace-down; }
+    Mod+Page_Up       hotkey-overlay-title=null { focus-workspace-up; }
     Mod+U              { focus-workspace-down; }
     Mod+I              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }

@@ -11,7 +11,7 @@
   border: none;
   box-shadow: none;
 }
-
+#custom-gsconnect,
 #custom-launcher,
 #taskbar,
 #workspaces,
@@ -99,6 +99,7 @@
 #custom-lock:hover,
 #custom-reboot:hover,
 #custom-power:hover,
+#custom-gsconnect:hover,
 #window:hover {
   background-color: rgba(97, 97, 97, 0.9); 
 }

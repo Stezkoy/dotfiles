@@ -10,6 +10,7 @@
     "custom/lock",
     "custom/reboot",
     "custom/power",
+    "custom/gsconnect",
     //    "wlr/taskbar",
     "mpris"
   ],
@@ -18,7 +19,6 @@
     "tray",
     "network",
     "custom/pacman",
-    "custom/gsconnect",
     "bluetooth",
     "pulseaudio",
     "backlight",
@@ -58,6 +58,16 @@
     "on-click": "pkill fuzzel || fuzzel -l 3",
     "tooltip": false
   },
+  
+  "custom/gsconnect" : {
+  "format": "<span color='#F3D796'> {} </span>",
+  "escape": true,
+  "exec": "$HOME/.config/scripts/gsconnect-status.py",
+  "return-type": "json",
+  "tooltip": "{tooltip}",
+  "interval": 30,
+  "on-click": "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
+},
 
   "wlr/taskbar": {
     "format": "{icon}",
